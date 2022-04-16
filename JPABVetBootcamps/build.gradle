@@ -36,10 +36,14 @@ ext {
 
 // define project specific dependencies
 dependencies {
+implementation  'org.apache.tomcat.embed:tomcat-embed-jasper'
+
+
   implementation "mysql:mysql-connector-java:$mySqlConnectorVersion"
   implementation "log4j:log4j:1.2.17"
   implementation "org.hibernate:hibernate-core:$hibernateVersion"
   implementation "org.hibernate:hibernate-c3p0:$hibernateVersion"
+  
   
   testImplementation("org.junit.jupiter:junit-jupiter:$junit5Version")
    
