@@ -13,17 +13,17 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.jpavetbootcamps.entities.VetBootcamp;
+import com.skilldistillery.jpavetbootcamps.entities.Bootcamp;
 
-class VetBootcampTest {
+class BootcampTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private VetBootcamp vetbootcamp;
+	private Bootcamp vetbootcamp;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("JPABVetBootcamps");
+		emf = Persistence.createEntityManagerFactory("JPAVetBootcamps");
 	}
 
 	@AfterAll
@@ -34,7 +34,7 @@ class VetBootcampTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		vetbootcamp = em.find(VetBootcamp.class, 1);
+		vetbootcamp = em.find(Bootcamp.class, 1);
 	}
 
 	@AfterEach
