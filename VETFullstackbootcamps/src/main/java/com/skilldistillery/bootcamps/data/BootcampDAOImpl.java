@@ -18,7 +18,7 @@ public class BootcampDAOImpl implements BootcampDAO {
 	private EntityManager em;
 
 	@Override
-	public Bootcamp findById(int bootcampId) {
+	public Bootcamp findById(Integer bootcampId) {
 		return em.find(Bootcamp.class, bootcampId);
 	}
 

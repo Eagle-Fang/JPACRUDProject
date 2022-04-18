@@ -48,7 +48,7 @@
 							<td>${bootcamp.city}</td>
 							<td>${bootcamp.state}</td>
 							<td>${bootcamp.language}</td>
-							<td>${bootcamp.duration}Weeks</td>
+							<td>${bootcamp.duration} Weeks</td>
 							<td>${bootcamp.venue}</td>
 						</tr>
 					</c:forEach>
@@ -68,7 +68,7 @@
 						<td>${bootcamp.city}</td>
 						<td>${bootcamp.state}</td>
 						<td>${bootcamp.language}</td>
-						<td>${bootcamp.duration}Weeks</td>
+						<td>${bootcamp.duration} Weeks</td>
 						<td>${bootcamp.venue}</td>
 					</tr>
 				</tbody>
@@ -92,28 +92,36 @@
 								type="text" name="language"> <br> Duration (weeks):
 							<input type="text" name="duration"> <br> Venue: <input
 								type="text" name="venue"> <br> <input type="submit"
-								name="bootcampID" value="Add Bootcamp" />
+								name="bootcamp" value="Add Bootcamp" />
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-
 		<div class="card">
 			<div class="card-body">
-				<h5 class="card-title">Display Bootcamp Details</h5>
+				<h5 class="card-title">Edit Bootcamp</h5>
 				<div class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button"
 						id="dropdownMenuButton" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">Single
-						Bootcamp Details</button>
+						aria-haspopup="true" aria-expanded="false">Edit Bootcamp</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<form action="getBootcamp.do" method="GET">
-							<label>Search by Bootcamp ID:</label> <input class="form-control"
-								type="text" name="bid" autocomplete="off" /> <input
-								type="submit" value="Search By ID" autocomplete="off" />
-						</form>
+						<input type="hidden" name="id" value="${bootcamp.id}" />
+						<form action="updateBootcamp.do" method="POST" name="id">
+							<p>
+								School Name: <input type="text" name="name"
+									value="${bootcamp.name}"> <br> City: <input
+									type="text" city="city" value="${bootcamp.city}"> <br>
+								State: <input type="text" name="state" value="${bootcamp.state}"}>
+								<br> language: <input type="text" name="language"
+									value="${bootcamp.language}"> <br> Duration
+								(weeks): <input type="text" name="duration"
+									value="${bootcamp.duration}"> <br> Venue: <input
+									type="text" name="venue" value="${bootcamp.venue}"> <br>
 
+								<input type="hidden" name="id" value="${bootcamp.id}" /> <input
+									type="hidden" name="id" value="${bootcamp.id}" /> <br> <input
+									type="submit" value="Edit Bootcamp" /> <br>
 						</form>
 					</div>
 				</div>
@@ -127,11 +135,31 @@
 					<button class="btn btn-secondary dropdown-toggle" type="button"
 						id="dropdownMenuButton" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Delete
-						Bootcamp (Enter ID)</button>
+						(Enter ID)</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<form action="deleteBootcamp.do" method="POST" name="bootcamp">
-							<input type="text" name="id" /> <input type="submit"
-								name="id" value="Delete bootcamp" />
+							<input type="text" name="id" /> <input type="submit" name="id"
+								value="Delete bootcamp" />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title"> Detailed Search</h5>
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">Single ID
+						Search</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<form action="getBootcamp.do" method="GET">
+							<label>Single ID Search</label> <input class="form-control"
+								type="text" name="bid" autocomplete="off" /> <input
+								type="submit" value="Search By ID" autocomplete="off" />
+						</form>
+
 						</form>
 					</div>
 				</div>

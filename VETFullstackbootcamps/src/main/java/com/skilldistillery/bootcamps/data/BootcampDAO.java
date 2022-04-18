@@ -6,7 +6,7 @@ import com.skilldistillery.bootcamps.entities.Bootcamp;
 
 public interface BootcampDAO {
 
-	public Bootcamp findById (int bootcampId);
+	public Bootcamp findById (Integer bootcampId);
 
 
 	public Bootcamp addBootcamp (Bootcamp bootcamp);
@@ -26,5 +26,7 @@ public interface BootcampDAO {
 	boolean bootcampDelete (int id);// delete method
 	
 	public List<Bootcamp> findAll();
+
+
 	
 }

@@ -20,7 +20,7 @@
 
 
       <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-        <h6 class="text-uppercase mb-4 font-weight-bold">Veteran Resources Group</h6>
+        <h6 class="text-uppercase mb-4 font-weight-bold">United Veterans Resource Society</h6>
         <p>VET TEC Coding Bootcamp Listing </p>
       </div>
 

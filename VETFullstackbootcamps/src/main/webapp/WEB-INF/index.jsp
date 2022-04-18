@@ -46,15 +46,15 @@
 						</form>
 					</div>
 				</div>
-				<div class="card" style="width: 25rem;">
+				<!-- <div class="card" style="width: 25rem;">
 					<div class="card-body">
-						<form action="updateBootcamp.do" method="POST">
-							<label>Update Provider Details (Enter ID):</label> <input class="form-control"
-								type="text" name="bid" autocomplete="off" /> <input
-								type="submit" value="Search By ID" autocomplete="off" />
+						<form action="getbootcamp.do" method="GET">
+							<label>Update Provider Details (Enter ID):</label> <input
+								class="form-control" type="text" name="bid" autocomplete="off" />
+							<input type="submit" value="Search By ID" autocomplete="off" />
 						</form>
 					</div>
-				</div>
+				</div> -->
 
 			</div>
 		</div>
@@ -74,3 +74,4 @@
 		crossorigin="anonymous"></script>
 </body>
 </html>
+

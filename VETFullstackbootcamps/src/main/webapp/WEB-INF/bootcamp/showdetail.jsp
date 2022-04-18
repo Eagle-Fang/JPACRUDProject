@@ -1,72 +1,177 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
+<title>VET TEC Coding Bootcamp List | Bootcamp Search</title>
 <link rel="stylesheet"
 	href=" https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
-<title>VETTEC Bootcamp Details | VET TEC Bootcamp </title>
-<link rel="icon"
-	href="https://www.benefits.va.gov/GIBILL/images/FGIB/VetTec_Logo.PNG"
-	sizes="32X32" type="image/png">
 
 </head>
 <body>
+
 	<%@ include file="navbar.jsp"%>
 	<br>
 	<br>
+	<h3 class="title">VET TEC Coding Bootcamp details</h3>
 	<br>
-	<br>
-	<div class="container-fluid">
 
+	<table class="table table-hover table-dark">
+		<thead>
+			<tr>
+				<th scope="col"></th>
+				<th scope="col">ID</th>
+				<th scope="col">Name</th>
+				<th scope="col">City</th>
+				<th scope="col">State</th>
+				<th scope="col">Language</th>
+				<th scope="col">Duration</th>
+				<th scope="col">Venue</th>
 
+			</tr>
+		</thead>
+		<c:choose>
+			<c:when test="${! empty bootcamps }">
 
-<!--  -->
-	<c:choose>
-			<c:when test="${empty bootcamp}">
-				<p>No Provider Found. Please Try Again.</p>
+				<tbody>
+					<c:forEach var="bootcamp" items="${bootcamps}">
+						<tr>
+							<th scope="row"></th>
+							<td>${bootcamp.id}</td>
+							<td>${bootcamp.name}</td>
+							<td>${bootcamp.city}</td>
+							<td>${bootcamp.state}</td>
+							<td>${bootcamp.language}</td>
+							<td>${bootcamp.duration} Weeks</td>
+							<td>${bootcamp.venue}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</c:when>
-			<c:when test="${not empty bootcamp}">
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">${bootcamp.name}</h5>
-						<h6 class="card-subtitle mb-2 text-muted">${bootcamp.city}, ${bootcamp.state}</h6>
-						<span class="badge bg-warning text-dark">${bootcamp.duration}</span>
-						<p class="card-text">${bootcamp.language}</p>
-						<p class="card-text">${bootcamp.stipend}</p>
-						<span class="badge rounded-pill bg-success">${bootcamp.venue}</span>
-						<span class="badge rounded-pill bg-primary my-1">ID
-							${bootcamp.id}</span>
-									
-						
-						<hr>
-				
+		</c:choose>
+
+
+		<c:choose>
+			<c:when test="${! empty bootcamp }">
+
+				<tbody>
+					<tr>
+						<th scope="row"></th>
+						<td>${bootcamp.id}</td>
+						<td>${bootcamp.name}</td>
+						<td>${bootcamp.city}</td>
+						<td>${bootcamp.state}</td>
+						<td>${bootcamp.language}</td>
+						<td>${bootcamp.duration} Weeks</td>
+						<td>${bootcamp.venue}</td>
+					</tr>
+				</tbody>
+			</c:when>
+		</c:choose>
+
+	</table>
+	<div class="card-group">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Add Bootcamp</h5>
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">Add Bootcamp</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<form action="newBootcamp.do" method="POST" name="bootcampID">
+							School Name: <input type="text" name="name"> <br>
+							City: <input type="text" name="city"> <br> State: <input
+								type="text" name="state"> <br> Language: <input
+								type="text" name="language"> <br> Duration (weeks):
+							<input type="text" name="duration"> <br> Venue: <input
+								type="text" name="venue"> <br> <input type="submit"
+								name="bootcampID" value="Add Bootcamp" />
+						</form>
 					</div>
 				</div>
-			</c:when>
-			<c:otherwise>
-				<p>No Provider found</p>
-			</c:otherwise>
-		</c:choose>
-	
-	<!--  -->
-	
-	
-	
+			</div>
+		</div>
 
-	</div>
-	
-	<div class="container">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Edit Bootcamp</h5>
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">Edit Bootcamp</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<input type="hidden" name="id" value="${bootcamp.id}" />
+						<form action="updateBootcamp.do" method="POST" name="id">
+							<p>
+								School Name: <input type="text" name="name"
+									value="${bootcamp.name}"> <br> City: <input
+									type="text" city="city" value="${bootcamp.city}"> <br>
+								State: <input type="text" name="state" value="${bootcamp.state}"}>
+								<br> Language: <input type="text" name="language"
+									value="${bootcamp.language}"> <br> Duration
+								(weeks): <input type="text" name="duration"
+									value="${bootcamp.duration}"> <br> Venue: <input
+									type="text" name="venue" value="${bootcamp.venue}"> <br>
 
+								<input type="hidden" name="id" value="${bootcamp.id}" /> <input
+									type="hidden" name="id" value="${bootcamp.id}" /> <br> <input
+									type="submit" value="Edit Bootcamp" /> <br>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Delete Bootcamp</h5>
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">Delete
+						Bootcamp (Enter ID)</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<form action="deleteBootcamp.do" method="POST" name="bootcamp">
+							<input type="text" name="id" /> <input type="submit" name="id"
+								value="Delete bootcamp" />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Display Bootcamp Details</h5>
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">Single
+						Bootcamp Details</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<form action="getBootcamp.do" method="GET">
+							<label>Search by Bootcamp ID:</label> <input class="form-control"
+								type="text" name="bid" autocomplete="off" /> <input
+								type="submit" value="Search By ID" autocomplete="off" />
+						</form>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+
+
 	<%@ include file="footer.jsp"%>
 	<br>
-
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>

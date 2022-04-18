@@ -83,18 +83,23 @@ public class BootcampController {
 	}		
 				
 	// Update
+//	@RequestMapping(path = "updateBootcamp.do", method = RequestMethod.GET)
+//	public String UpdateBootcamp(@RequestParam("bid") Integer bid, Model model) {
+//		Bootcamp bootcamp = dao.findById(bid);
+//		model.addAttribute("bootcamp", bootcamp);
+//		return "bootcamp/editbootcamp";
+//	}
+	
+	
+	
 	@RequestMapping(path = "updateBootcamp.do", method = RequestMethod.POST)
 				public String updateBootcamp (Model model, Bootcamp bootcamp) {
 					Bootcamp updateBootcamp = dao.updateBootcampInfo(bootcamp);
 					model.addAttribute("bootcamp", updateBootcamp);
 					
-					return "bootcamp/editbootcamp";
+					return "bootcamp/newBootcamp";
 				}
 
-	
-	
-	
-	
 	// Delete
 
 	@RequestMapping(path = "deleteBootcamp.do", method = RequestMethod.POST)
