@@ -11,24 +11,24 @@ public class Bootcamp {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
-	@Column(name = "City_primary")
+//	@Column(name = "City_primary")
 	private String city;
 
-	@Column(name = "State_primary")
+//	@Column(name = "State_primary")
 	private String state;
 
-	@Column(name = "Primary_language")
+	@Column(name = "primary_language")
 	private String language;
 
-	@Column(name = "Duration_weeks")
+	@Column(name = "duration_weeks")
 	private Integer duration;
 
-	@Column(name = "Max_Stipend")
+	@Column(name = "max_stipend")
 	private Integer maxStipend;
 
-	@Column(name = "Class_venue")
+	@Column(name = "class_venue")
 	private String venue;
 
 	private String name;
@@ -85,11 +85,11 @@ public class Bootcamp {
 		super();
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -1,7 +1,5 @@
 package com.skilldistillery.bootcamps.controllers;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,6 @@ public class BootcampController {
 
 	@RequestMapping(path = { "/", "index.do" })
 	public String index() {
-//			model.addAttribute("DEBUG", dao.findById(1));
 		return "index";
 	}
 
@@ -46,6 +43,8 @@ public class BootcampController {
 
 			}
 			Bootcamp bootcamp = dao.findById(id);
+			model.addAttribute("bootcamp", bootcamp);
+			return "bootcamp/showlist";
 		}
 	}
 
@@ -56,35 +55,25 @@ public class BootcampController {
 
 	@RequestMapping(path = "newBootcamp.do", method = RequestMethod.POST)
 			public String addNewBootcamp(Bootcamp bootcamp, Model model) {
-				Bootcamp bootcamp = dao.addBootcamp(bootcamp);
-				model.addAttribute("bootcamp", addBootcamp());
-				return "bootcamp/show";
+				bootcamp = dao.addBootcamp(bootcamp);
+				model.addAttribute("bootcamp", bootcamp);
+				return "bootcamp/showdetail";
 			}
 
-	@RequestMapping(path = "getBootcampByName.do", method = RequestMethod.GET)
-	public String showBootcampByName(Model model, String name) {
-		if (name.isEmpty()) {
-			return "index";
-		} else {
-			List<Bootcamp> bootcamps = dao.listOfBootcampByName(name);
-			model.addAttribute("bootcamps", bootcamps);
-			return "bootcamp/show";
-		}
-	}
 
 	@RequestMapping(path = "listBootcamps.do", method = RequestMethod.GET)
 	public String listOfBootcamps (Model model) {
 		List <Bootcamp> bootcamps = dao.listOfAllBootcamps();
 		model.addAttribute("bootcamps", bootcamps);
-		return "bootcamp/show";
+		return "bootcamp/showlist";
 	}
 	
-	@RequestMapping(path = "listBootcampStates.do", method = RequestMethod.GET)
-		public String listOfBootcampStates (Model model) {
-			List <Bootcamp> bootcamps = dao.listOfAllBootcamps();
-			model.addAttribute("bootcamps", bootcamps);
-			return "bootcamp/showState";
-	}
+//	@RequestMapping(path = "listBootcampStates.do", method = RequestMethod.GET)
+//		public String listOfBootcampStates (Model model) {
+//			List <Bootcamp> bootcamps = dao.listOfAllBootcamps();
+//			model.addAttribute("bootcamps", bootcamps);
+//			return "bootcamp/showState";
+//	}
 	
 	@RequestMapping(path = "listBootcampStipends.do", method = RequestMethod.GET)
 			public String listOfBootcampStipends (Model model) {
@@ -96,25 +85,26 @@ public class BootcampController {
 	// Update
 	@RequestMapping(path = "updateBootcamp.do", method = RequestMethod.POST)
 				public String updateBootcamp (Model model, Bootcamp bootcamp) {
-					Bootcamp updateBootcamp = dao.updateBootcampInfo(bootcamp)
-					model.addAttribute("bootcamp", updatedBootcamp);
+					Bootcamp updateBootcamp = dao.updateBootcampInfo(bootcamp);
+					model.addAttribute("bootcamp", updateBootcamp);
 					
-					return "bootcamp/show";
+					return "bootcamp/editbootcamp";
 				}
 
+	
+	
+	
+	
 	// Delete
 
-	@RequestMapping(path = "deleteBootcamp.do", method = RequestMethod.GET)
-		public String deleteBootcamp (Model mondel,int id) {
+	@RequestMapping(path = "deleteBootcamp.do", method = RequestMethod.POST)
+		public String bootcampDelete (Model model, Bootcamp bootcamp, Integer id) {
 		
-			if (dao.deleteBootcamp(id))  {
-				model.addAttribute("deleteBootcamp", "Successfully deleted")
-				return "bootcamp/deleteBootcamp.do";
-				
-				
-			} else {
-				model.addAttribute("bootcamp", dao.findById(id));
-				return "bootcamp/show";			
+		dao.deleteBootcamp(bootcamp, id);
+		
+		model.addAttribute("bootcamp", bootcamp);
+		
+				return "bootcamp/showlist";			
 		}
 	}
-}
+

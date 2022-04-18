@@ -40,15 +40,11 @@ public class BootcampDAOImpl implements BootcampDAO {
 		return bootcamp;
 	}
 
-	@Override
-	public List<Bootcamp> listOfBootcampByStates(String Name) {
-		return em.createQuery("SELECT b FROM Bootcamp b WHERE b.state=:primary_state", Bootcamp.class)
-				.setParameter("State", State).getResultList();
-	}
 
 	@Override
 	public List<Bootcamp> listOfAllBootcamps() {
-		return em.createQuery("SELECT b FROM Bootcamp b", Bootcamp.class).getResultsList();
+		return em.createQuery("SELECT b FROM Bootcamp b", Bootcamp.class)
+				.getResultList();
 	}
 
 	@Override
@@ -70,10 +66,30 @@ public class BootcampDAOImpl implements BootcampDAO {
 	}
 
 	@Override
-	public Bootcamp deleteBootcamp(int id) {
-		Bootcamp bootcamp = em.find(Bootcamp.class, id);
-		em.remove(bootcamp);
-		return (em.find(Bootcamp.class, id, bootcamp) == null);
+	public boolean deleteBootcamp (Bootcamp bootcamp, int id) {
+		bootcamp = em.find(Bootcamp.class, id);
+		boolean success = false;
+		//		em.remove(bootcamp);
+//		return (em.find(Bootcamp.class, id) == null);
+		
+		if (bootcamp !=null) { 
+//			em.getTransaction().begin();
+			em.remove(bootcamp);
+			em.flush();
+			
+			success = !em.contains(bootcamp);
+		}
+
+		return success;
+	
+			
+	
+	}
+
+	@Override
+	public boolean bootcampDelete(int id) {
+		
+		return false;
 	}
 
 }

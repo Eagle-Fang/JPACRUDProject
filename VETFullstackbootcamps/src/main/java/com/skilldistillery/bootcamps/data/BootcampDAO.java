@@ -11,7 +11,7 @@ public interface BootcampDAO {
 
 	public Bootcamp addBootcamp (Bootcamp bootcamp);
 	
-	public List<Bootcamp> listOfBootcampByStates (String Name);
+//	public List<Bootcamp> listOfBootcampByStates (String Name);
 	
 	public List<Bootcamp> listOfAllBootcamps ();
 
@@ -21,8 +21,10 @@ public interface BootcampDAO {
 	public Bootcamp findByName (String name);
 	
 	public Bootcamp updateBootcampInfo (Bootcamp bootcamp); // delete
-	public Bootcamp deleteBootcamp (int id); // delete
+	public boolean deleteBootcamp (Bootcamp bootcamp, int id); // delete
 
+	boolean bootcampDelete (int id);// delete method
+	
 	public List<Bootcamp> findAll();
 	
 }
